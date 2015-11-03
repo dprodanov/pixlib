@@ -258,15 +258,19 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		}
 	}
 
+	/*
+	 * 	s: (r[2]^2+i[2]^2)
+	 *  RE: (r[1]*r[2]+i[1]*i[2])/s
+	 *  IM: (i[1]*r[2]-r[1]*i[2])/s
+	 */
 	@Override
 	public void div(IComplexArray a) {
 		if (validate(a)) {
 			double tmpr,s;
 			for (int i=0; i<length; i+=2) {
-				s=mod(i);
-				s*=s;
-				tmpr=(Re(i)*a.Re(i) + Im(i)*a.Re(i))/s;
-				data[i+1]=(Re(i)*a.Im(i) - Im(i)*a.Im(i))/s;
+				s= data[i]*data[i]+data[i+1]*data[i+1];
+				tmpr=(Re(i)*a.Re(i) + Im(i)*a.Im(i))/s;
+				data[i+1]=(Im(i)*a.Re(i) - Re(i)*a.Im(i))/s;
 				data[i]=tmpr;
 			}
 			}

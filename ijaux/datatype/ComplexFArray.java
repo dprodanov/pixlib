@@ -269,15 +269,19 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		}
 	}
 
+	/*
+	 * 	s: (r[2]^2+i[2]^2)
+	 *  RE: (r[1]*r[2]+i[1]*i[2])/s
+	 *  IM: (i[1]*r[2]-r[1]*i[2])/s
+	 */
 	@Override
 	public void div(ComplexFArray a) {
 		if (validate(a)) {
-			double tmpr,s;
+			double tmpr, s;
 			for (int i=0; i<first.length; i++) {
-				s=mod(i);
-				s*=s;
-				tmpr=(Re(i)*a.Re(i) + Im(i)*a.Re(i))/s;
-				second[i]=(float) ((Re(i)*a.Im(i) - Im(i)*a.Im(i))/s);
+				s= first[i]*first[i]+second[i]*second[i];
+				tmpr=(Re(i)*a.Re(i) + Im(i)*a.Im(i))/s;
+				second[i]=(float) ((Im(i)*a.Re(i) - Re(i)*a.Im(i))/s);
 				first[i]=(float) tmpr;
 			}
 			}
