@@ -192,8 +192,8 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		if (validate(b)) {
 			double tmpr;
 			for (int i=0; i<length; i+=2) {
-				tmpr=Re(i)*b.Re(i) - Im(i)*b.Im(i); 
-				data[i+1]=Re(i)*b.Im(i) + Im(i)*b.Re(i);
+ 				tmpr=Re(i)*b.Re(i) - Im(i)*b.Im(i); 
+ 				data[i+1]=Re(i)*b.Im(i) + Im(i)*b.Re(i);
 				data[i]=tmpr;
 			}
 		}

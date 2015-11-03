@@ -192,13 +192,14 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		if (validate(b)) {
 			double tmpr;
 			for (int i=0; i<length; i+=2) {
+ 
 				tmpr=(float) (Re(i)*b.Re(i) - Im(i)*b.Im(i)); 
+ 
 				data[i+1]=(float) (Re(i)*b.Im(i) + Im(i)*b.Re(i));
 				data[i]=(float) tmpr;
 			}
 		}
 	}
-
 	
 	
 	public double[] norm2() {

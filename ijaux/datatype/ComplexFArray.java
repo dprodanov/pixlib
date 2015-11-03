@@ -184,14 +184,16 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	 * IM : i[1]*r[2] + r[1]*i[2]
 	*/
 	@Override
+ 
 	public void mult(ComplexFArray b) {
-		if (validate(b)) {
+  		if (validate(b)) {
 			double tmpr, tmpi;
 			for (int i=0; i<length; i+=2) {
 				tmpr=(float) (Re(i)*b.Re(i) - Im(i)*b.Im(i)); 
 				tmpi=(float) (Re(i)*b.Im(i) + Im(i)*b.Re(i));
 				first[i]=  (float) tmpr;
-				second[i]= (float) tmpi;				
+				second[i]= (float) tmpi;			
+ 
 			}
 		}
 	}
@@ -347,6 +349,5 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		 astr+=" ]";
 		 return astr;
 	}
-
  
 }
