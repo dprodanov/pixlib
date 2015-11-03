@@ -6,25 +6,25 @@ import ijaux.datatype.access.ElementAccess;
 /*
  *  interlaced complex array. Good for signal processing
  */
-public class IComplexArray implements ProductSpaceReflexive<double[],IComplexArray>, 
-ElementAccess<Integer, ComplexNumber>, Typing {
+public class IComplexFArray implements ProductSpaceReflexive<float[],IComplexFArray>, 
+ElementAccess<Integer, ComplexFNumber>, Typing {
  
-	private double[] data=null;
+	private float[] data=null;
 	 
 	private static final long serialVersionUID = -4789934942912445718L;
 	private int length=0;
  
-	public static IComplexArray create(int capacity) {	 
+	public static IComplexFArray create(int capacity) {	 
 		double[]a=new double[2*capacity];	
-		return new IComplexArray(a);
+		return new IComplexFArray(a);
 	}
 	
-	public IComplexArray(double[] a, double[] b) {	
+	public IComplexFArray(float[] a, float[] b) {	
 		if (a!=null && b!=null) {
 			length=2*a.length;
 			if (a.length!=b.length)
 				throw new IllegalArgumentException("array size mismatch");		
-			data=new double[length];
+			data=new float[length];
 			
 			for (int i=0, k=0; i< a.length; k+=2, i++) {
 				data[k]=a[i];
@@ -34,7 +34,7 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		} 
 		if (a!=null && b==null) {
 			length=2*a.length;				
-			data=new double[length];	
+			data=new float[length];	
 			// filling even positions
 			for (int i=0, k=0; i< a.length; k+=2, i++) {
 				data[k]=a[i];
@@ -43,7 +43,7 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		} 
 		if (a==null && b!=null) {
 			length=2*b.length;				
-			data=new double[length];	
+			data=new float[length];	
 			// filling odd positions
 			for (int i=1, k=0; i< b.length; k+=2, i++) {
 				data[k]=b[i];
@@ -55,7 +55,7 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	/*
 	 *  
 	 */
-	public IComplexArray(double[] a) {
+	public IComplexFArray(float[] a) {
 		length=a.length;
 		data=a;
 	}
@@ -63,67 +63,67 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	/*
 	 *  
 	 */
-	public IComplexArray(float[] a) {
+	public IComplexFArray(double[] a) {
 		length=a.length;
-		data=new double[length];
+		data=new float[length];
 		for (int i=0; i<a.length; i++)
-			data[i]= (double) a[i];
+			data[i]=  (float) a[i];
 	}
 	
 	public void polarForm(double[] magnitude, double[] angle) {
 		if (magnitude.length!=angle.length)
 			throw new IllegalArgumentException("array size mismatch");
 		length=2*magnitude.length;
-		data=new double[ length];
+		data=new float[ length];
 		for (int i=0; i<magnitude.length; i+=2) {
-			data[i]=(magnitude[i] * Math.cos(angle[i]));
-			data[i+1]=(magnitude[i] * Math.sin(angle[i]));
+			data[i]=(float) (magnitude[i] * Math.cos(angle[i]));
+			data[i+1]=(float) (magnitude[i] * Math.sin(angle[i]));
 		}
 
 	}
 	
-	ComplexArray split() {
-		double[] re=Re();
-		double[] im=Im();		
-		return new ComplexArray(re, im, false);
+	ComplexFArray split() {
+		float[] re=Re();
+		float[] im=Im();		
+		return new ComplexFArray(re, im, false);
 	}
 	
 /*	public static IComplexArray fromPolar(double[] magnitude, double[] angle) {
 		    return new IComplexArray (magnitude, angle, true);
 	}*/
 
-	public double[] Re(){
-		double[] ret =new double[length/2];
+	public float[] Re(){
+		float[] ret =new float[length/2];
 		for (int i=0; i<ret.length; i++)
 			ret[i]=data[i<<1];
 		return ret;
 	}
 	
-	public double[] Im(){
-		double[] ret =new double[length/2];
+	public float[] Im(){
+		float[] ret =new float[length/2];
 		for (int i=0; i<ret.length; i++)
 			ret[i]=data[(i<<1)+1];
 		return ret;
 	}
 	 
-	public double Re(int i){
+	public float Re(int i){
 		return data[i];
 	}
 	
-	public double Im(int i){
+	public float Im(int i){
 		return data[i+1];
 	}
 	
-	public IComplexArray clone() {
-		double[] sfirst=data.clone();
-		return new IComplexArray(sfirst);
+	public IComplexFArray clone() {
+		float[] sfirst=data.clone();
+		return new IComplexFArray(sfirst);
 	}
 	
-	public IComplexArray conjugate() {
-		double[] xi=data.clone();			
+	public IComplexFArray conjugate() {
+		float[] xi=data.clone();			
 		for (int i=1; i<length; i+=2)
 			xi[i]=-xi[i];		
-	    return new IComplexArray(xi);
+	    return new IComplexFArray(xi);
 	}
 	
 	public void uconjugate() {			
@@ -143,15 +143,15 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	    }
 	}
 	
-	public double[] mod() {
-	    double [] m=new double [length/2];
+	public float[] mod() {
+	    float [] m=new float [length/2];
 		for (int i=0; i<length; i+=2)
-	        m[i>>1]=Math.sqrt(data[i]*data[i]+data[i+1]*data[i+1]);     
+	        m[i>>1]=(float) Math.sqrt(data[i]*data[i]+data[i+1]*data[i+1]);     
 	    return m;
 	}
 
 	@Override
-	public double[] norm(){
+	public float[] norm(){
 		return mod();
 	}
 	/**
@@ -175,23 +175,23 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 
 	
 
-	public IComplexArray invs() {
+	public IComplexFArray invs() {
 		final double[] s=norm2();
 		double[] a=new double [length]; 
 		for (int i=0;i <length; i++) {
 			a[i]=data[i]/s[i];
 		}
-		return new IComplexArray(a);
+		return new IComplexFArray(a);
 	}
 
 	@Override
-	public void mult(IComplexArray b) {
+	public void mult(IComplexFArray b) {
 		if (validate(b)) {
 			double tmpr;
 			for (int i=0; i<length; i+=2) {
-				tmpr=Re(i)*b.Re(i) - Im(i)*b.Re(i); 
-				data[i+1]=Re(i)*b.Im(i) + Im(i)*b.Re(i);
-				data[i]=tmpr;
+				tmpr=(float) (Re(i)*b.Re(i) - Im(i)*b.Re(i)); 
+				data[i+1]=(float) (Re(i)*b.Im(i) + Im(i)*b.Re(i));
+				data[i]=(float) tmpr;
 			}
 		}
 	}
@@ -206,12 +206,12 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		return dnorm;
 	}
 	
-	public double  norm2(int i) {
+	public float  norm2(int i) {
 		return data[i]*data[i]+data[i+1]*data[i+1];
 	}
 
 	@Override
-	public void add(IComplexArray a) {
+	public void add(IComplexFArray a) {
 		if (validate(a)) {
 			for(int i=0; i<length; i++) {
 				data[i]+= a.data[i]; 
@@ -246,7 +246,7 @@ ElementAccess<Integer, ComplexNumber>, Typing {
  
 	
 	@Override
-	public void sub(IComplexArray a) {
+	public void sub(IComplexFArray a) {
 		if (validate(a)) {
 			for(int i=0; i<length; i+=2) {
 				data[i]-=a.Re(i);
@@ -256,46 +256,46 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	}
 
 	@Override
-	public void div(IComplexArray a) {
+	public void div(IComplexFArray a) {
 		if (validate(a)) {
 			double tmpr,s;
 			for (int i=0; i<length; i+=2) {
 				s=mod(i);
 				s*=s;
 				tmpr=(Re(i)*a.Re(i) + Im(i)*a.Re(i))/s;
-				data[i+1]=(Re(i)*a.Im(i) - Im(i)*a.Im(i))/s;
-				data[i]=tmpr;
+				data[i+1]=(float) ((Re(i)*a.Im(i) - Im(i)*a.Im(i))/s);
+				data[i]=(float) tmpr;
 			}
 			}
 	}
 
-	public boolean validate(IComplexArray a) {
+	public boolean validate(IComplexFArray a) {
 		return length==a.length;
 	}
 
 	@Override
-	public ComplexNumber element(int index) {
-		return new ComplexNumber(data[index], data[index+1], false);
+	public ComplexFNumber element(int index) {
+		return new ComplexFNumber(data[index], data[index+1], false);
 	}
 
 	@Override
-	public void putE(int index, ComplexNumber value) {
+	public void putE(int index, ComplexFNumber value) {
 		data[index]=value.Re();
 		data[index+1]=value.Im();
 	}
 
 	@Override
-	public ComplexNumber element(Integer coords) {
-		return new ComplexNumber(data[coords], data[coords+1], false);
+	public ComplexFNumber element(Integer coords) {
+		return new ComplexFNumber(data[coords], data[coords+1], false);
 	}
 
 	@Override
-	public void putV(Integer coords, ComplexNumber value) {
+	public void putV(Integer coords, ComplexFNumber value) {
 		putE(coords,value);
 	}
 
 	@Override
-	public void put(Pair<Integer, ComplexNumber> pair) {
+	public void put(Pair<Integer, ComplexFNumber> pair) {
 		putE(pair.first, pair.second);
 	}
 

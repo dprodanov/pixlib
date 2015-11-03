@@ -5,7 +5,7 @@ package ijaux.datatype;
 
 /**
  * @author prodanov
- *
+ * implement lexicographic comparison
  */
 public class ComparablePair<A, B> extends Pair<A, B> implements  Comparable<ComparablePair<A, B>> {
 
@@ -24,6 +24,10 @@ public class ComparablePair<A, B> extends Pair<A, B> implements  Comparable<Comp
   
 	}
 	
+
+    public static <A,B> ComparablePair<A,B> of (A first, B second) {
+        return new ComparablePair<A,B>(first,second);
+    }
 	 
     @SuppressWarnings("unchecked")
 	private static int compare(Object o1, Object o2) {

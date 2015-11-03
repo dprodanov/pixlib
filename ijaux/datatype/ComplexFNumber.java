@@ -2,9 +2,9 @@ package ijaux.datatype;
 
 
 
-public class ComplexNumber extends Pair<Double,Double> 
+public class ComplexFNumber extends Pair<Float,Float> 
 
-implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
+implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
  
  
 	
@@ -14,11 +14,11 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 	private static final long serialVersionUID = -5513067895742945334L;
 	private boolean isPolar=false;
 	
-	public static ComplexNumber zero() {
-		return new ComplexNumber(0,0,false);
+	public static ComplexFNumber zero() {
+		return new ComplexFNumber(0,0,false);
 	}
 	
-	public ComplexNumber(double a, double b, boolean polar) {
+	public ComplexFNumber(float a, float b, boolean polar) {
 		super(a,b);
 		if (polar){
 			polarForm(a,b);
@@ -26,32 +26,31 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 		isPolar=polar;
 	}
 	
-	public void polarForm(double magnitude, double angle) {
-		   
-	      first=(magnitude * Math.cos(angle));
-	      second=(magnitude * Math.sin(angle));
+	public void polarForm(double magnitude, double angle) { 
+	      first=(float) (magnitude * Math.cos(angle));
+	      second=(float) (magnitude * Math.sin(angle));
 	      //isPolar=true;
 
 	}
 	
-	public static ComplexNumber fromPolar(double magnitude, double angle) {
-		    double first=(magnitude * Math.cos(angle));
-		    double second=(magnitude * Math.sin(angle));
-		    return (ComplexNumber) new ComplexNumber (first, second, false);
+	public static ComplexFNumber fromPolar(double magnitude, double angle) {
+		    float first=(float) (magnitude * Math.cos(angle));
+		    float second=(float) (magnitude * Math.sin(angle));
+		    return (ComplexFNumber) new ComplexFNumber (first, second, false);
 
 	}
 
-	public double Re(){
+	public float Re(){
 		return first;
 	}
 	
-	public double Im(){
+	public float Im(){
 		return second;
 	}
 	 
 	
-	public ComplexNumber conjugate() {
-	    return new ComplexNumber(first, second * (-1), false);
+	public ComplexFNumber conjugate() {
+	    return new ComplexFNumber(first, second * (-1), false);
 	  }
 
 	
@@ -114,30 +113,28 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 			 return astr;
 	 }
 
-	public ComplexNumber invs() {
-		double s=mod();
-		s*=s;
-		return new ComplexNumber(Re()/s, -Im()/s, false);
+	public ComplexFNumber invs() {
+		final double s=mod()*mod();
+		return new ComplexFNumber((float)(Re()/s), (float)(-Im()/s), false);
 	}
 
 	/* RE : r[1]*r[2] - i[1]*i[2] 
 	 * IM : i[1]*r[2] + r[1]*i[2]
 	*/
 	@Override
-	public void mult( ComplexNumber b) {
-		final double tmpr =first*b.Re() - second*b.Im(); 
-		second =  second*b.Re() + first*b.Im();
-		first=tmpr;
-	} 
-	
-
+	public void mult( ComplexFNumber b) {
+		final double tmpr =first*b.Re() - second*b.Re(); 
+		second=(float)first*b.Im() + second*b.Re();
+		first=(float) tmpr;
+	}
+ 
 	@Override
-	public ComplexNumber norm() {
-		return new ComplexNumber(mod()*mod(), 0, false); 
+	public ComplexFNumber norm() {
+		return new ComplexFNumber((float) (mod()*mod()), 0, false); 
 	}
 
 	@Override
-	public void add(ComplexNumber a) {
+	public void add(ComplexFNumber a) {
 		first+= a.Re(); 
 		second+=a.Im(); 
 	}
@@ -150,24 +147,24 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 
 	@Override
 	public void scale(double scalar) {
-		first=scalar*Re(); 
-		second=scalar*Im();
+		first=(float) (scalar*Re()); 
+		second=(float) (scalar*Im());
 	}
 
 	@Override
-	public void sub(ComplexNumber a) {
+	public void sub(ComplexFNumber a) {
 		first-=a.Re();
 		second-=a.Im(); 
 	}
 
 	@Override
-	public void div(ComplexNumber a) {
+	public void div(ComplexFNumber a) {
 		// twiddle
 		double s=mod();
 		s*=s;
 		final double tmpr =(first*a.Re() + second*a.Re())/s;
-		second =(first*a.Im() - second*a.Im())/s;
-		first=tmpr;
+		second =(float) ((first*a.Im() - second*a.Im())/s);
+		first=(float) tmpr;
 	}
 
 	@Override
