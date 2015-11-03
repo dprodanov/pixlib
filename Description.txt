@@ -1,0 +1,12 @@
+This library provides general tools for manipulation of generic pixel arrays.
+Key concepts are the Iterators, the Hyper Cubes and the Regions.
+The Hyper Cubes in their implementation as Pixel Cubes provide generalization of
+ N-dimensional images.
+The Hyper Cubes in their implementation as Vector Cubes provide generalization of
+Structuring Elements. The Regions provide the pixel neighborhood around a given pixel
+defined by a Vector Cube.
+
+ 
+
+@version 0.9.5
+@date 23 Sept 2012
