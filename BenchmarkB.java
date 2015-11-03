@@ -3,14 +3,12 @@ import java.lang.reflect.Array;
 import ij.ImageJ;
 import ij.ImagePlus;
 import ij.process.ByteProcessor;
-import ij.process.ImageProcessor;
 import ijaux.*;
 import ijaux.datatype.UnsupportedTypeException;
 import ijaux.datatype.access.Access;
 import ijaux.hypergeom.PixelCube;
 import ijaux.hypergeom.index.BaseIndex;
 import ijaux.iter.array.ByteForwardIterator;
-import ijaux.iter.seq.RasterForwardIterator;
 
 
 public class BenchmarkB implements Constants {

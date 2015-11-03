@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class IComplexArrayTest {
+public class IComplexArrayTest     {
 	
 	static final double[] xr={31,	-14.0710678118655f,		5,	  0.0710678118654755f,	
 							 -5,	  0.0710678118654755f,	5,	-14.0710678118655f};
