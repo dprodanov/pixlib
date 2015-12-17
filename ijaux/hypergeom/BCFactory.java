@@ -1,8 +1,5 @@
 package ijaux.hypergeom;
 
-
-import ijaux.dsp.SamplingWindow;
-import ijaux.dsp.WindowTypes;
 import ijaux.hypergeom.index.Indexing;
 
 public class BCFactory implements BoundaryCondition<int[]> {
@@ -53,11 +50,10 @@ public class BCFactory implements BoundaryCondition<int[]> {
 				scoords[i]=coords[i];
 				final int a=Math.abs(coords[i]) % dim[i]+1;
 				if (coords[i]>=dim[i]) {					 
-					scoords[i]=   dim[i] - a;
+					scoords[i] = Math.abs(dim[i] - a - 1);
 				} 
-				
 				if (coords[i] < 0) {
-					scoords[i]=    a-1;
+					scoords[i] = Math.abs(a-1);
 				}
 			}
 			return scoords;
