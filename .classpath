@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="ijaux/dsp/Conv.java|ijaux/dsp/DSP.java|ijaux/dsp/FFT.java|ijaux/dsp/|ijaux/hypergeom/dsp/|test/dsp/" kind="src" path=""/>
+	<classpathentry excluding="ijaux/dsp/Conv.java|ijaux/dsp/DSP.java|ijaux/dsp/FFT.java|ijaux/dsp/|ijaux/hypergeom/dsp/|test/dsp/|ijaux/hypergeom/BCFactory.java" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ij"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jama"/>

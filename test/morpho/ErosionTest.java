@@ -3,12 +3,12 @@ import ij.ImageJ;
 import ij.ImagePlus;
 import ijaux.*;
 import ijaux.datatype.UnsupportedTypeException;
-import dsp.BCFactory;
-import dsp.BCTypes;
-import dsp.BCFactory.MirrorCondition;
 import ijaux.hypergeom.*;
+import ijaux.hypergeom.BCFactory.MirrorCondition;
 import ijaux.hypergeom.index.BaseIndex;
 import ijaux.hypergeom.morphology.*;
+import ijaux.iter.seq.*;
+import ijaux.stats.CubeHistogram;
 
 
 public class ErosionTest {
