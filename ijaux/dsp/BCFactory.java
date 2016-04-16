@@ -1,8 +1,6 @@
-package ijaux.hypergeom;
+package ijaux.dsp;
 
 
-import ijaux.dsp.SamplingWindow;
-import ijaux.dsp.WindowTypes;
 import ijaux.hypergeom.index.Indexing;
 
 public class BCFactory implements BoundaryCondition<int[]> {

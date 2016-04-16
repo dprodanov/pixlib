@@ -3,12 +3,9 @@ package ijaux.hypergeom;
 import ijaux.Util;
 import ijaux.datatype.Pair;
 import ijaux.datatype.access.Access;
+import dsp.BoundaryCondition;
 import ijaux.funct.ElementFunction;
-import ijaux.funct.IndexedTransformer;
 import ijaux.hypergeom.index.Indexing;
-import ijaux.iter.compl.ComplexVectorCursor;
-import ijaux.iter.dir.VectorCursor;
-import ijaux.parallel.ThreadedProcessor;
 
 public class ZonalProcessor {
 

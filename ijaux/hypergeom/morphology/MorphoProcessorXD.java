@@ -10,6 +10,7 @@ import ijaux.datatype.Pair;
 import ijaux.datatype.Typing;
 import ijaux.datatype.UnsupportedTypeException;
 import ijaux.datatype.access.Access;
+import dsp.BoundaryCondition;
 import ijaux.hypergeom.*;
 import ijaux.hypergeom.index.BaseIndex;
 import ijaux.hypergeom.index.GridIndex;

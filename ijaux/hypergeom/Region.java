@@ -9,6 +9,7 @@ import ijaux.Util;
 import ijaux.datatype.Pair;
 import ijaux.datatype.UnsupportedTypeException;
 import ijaux.datatype.access.Access;
+import dsp.BoundaryCondition;
 import ijaux.funct.AbstractElementFunction;
 import ijaux.funct.ElementFunction;
 import ijaux.funct.RegionTransformer;

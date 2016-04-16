@@ -1,4 +1,4 @@
-package ijaux.hypergeom;
+package ijaux.dsp;
 
 /* Generic spec for boundary conditions
  * @author Dimiter Prodanov

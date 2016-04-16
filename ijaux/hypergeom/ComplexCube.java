@@ -6,16 +6,12 @@ package ijaux.hypergeom;
 import ijaux.Util;
 import ijaux.datatype.ComplexArray;
 import ijaux.datatype.ComplexNumber;
-import ijaux.datatype.Pair;
 import ijaux.datatype.access.Access;
 import ijaux.datatype.access.ComplexAccess;
-import ijaux.datatype.access.ElementAccess;
-import ijaux.dsp.FFT;
-import ijaux.dsp.SamplingWindow;
-import ijaux.dsp.WindowTypes;
+import dsp.SamplingWindow;
+import dsp.WindowTypes;
 import ijaux.hypergeom.index.*;
 import ijaux.iter.compl.ComplexVectorCursor;
-import ijaux.iter.dir.VectorCursor;
 
 import java.util.Iterator;
 
@@ -189,7 +185,7 @@ implements Cloneable {
 			final ComplexArray carr=block.nextC();
 			block.dec();
 			//System.out.println((i++)+" " );			
-			FFT.fftshift1d(carr);
+			fftshift1d(carr);
 			//System.out.println ("cs " +carr);
 			//System.out.println("iter " +" dir " +dir);
 			block.put(carr);
@@ -197,6 +193,33 @@ implements Cloneable {
 		}
 		
 	}
+	
+
+	public void fftshift1d(ComplexArray arr) {
+		final int k=(int)arr.length()/2;
+		double[] re=arr.Re();
+		double[] im=arr.Im();
+		//final int n=re.length-1;
+		
+		for (int i=0; i<k; i++) {
+			double tmp=re[i];
+			re[i]=re[k+i];
+			re[k+i]=tmp;
+			
+			tmp=im[i];
+			im[i]=im[k+i];
+			im[k+i]=tmp;
+		}
+	}
+	//konop's
+		public void fftshift1d(double[] arr) {
+			final int k=arr.length/2;		
+			for (int i=0; i<k; i++) {
+				double tmp=arr[i];
+				arr[i]=arr[k+i];
+				arr[k+i]=tmp;			
+			}
+		}
 
 	public void fftshift() {
 		for (int i=0;i<n;i++)
@@ -211,7 +234,7 @@ implements Cloneable {
 			final ComplexArray carr=block.nextC();
 			block.dec();
 			//System.out.println((i++)+" " );			
-			FFT.ifftshift1d(carr);
+			fftshift1d(carr);
 			//System.out.println ("cs " +carr);
 			//System.out.println("iter " +" dir " +dir);
 			block.put(carr);
