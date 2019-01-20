@@ -5,6 +5,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jama"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/IJ"/>
+	<classpathentry kind="lib" path="C:/Applications/ImageJa/Jama-1.0.3.jar"/>
 	<classpathentry kind="lib" path="C:/Applications/ImageJ/plugins/dsplib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -16,7 +16,7 @@ public class BenchmarkMax implements PlugIn {
     
 	@Override
 	public void run(String arg) {
-		new ImageJ();
+
 		
 		// Opens the M51 galaxy example
         String name = "http://rsb.info.nih.gov/ij/images/m51.tif";
@@ -54,6 +54,7 @@ public class BenchmarkMax implements PlugIn {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		new ImageJ();
 		new BenchmarkMax().run(null);
 		
 

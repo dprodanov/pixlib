@@ -14,14 +14,16 @@ import ijaux.hypergeom.index.BaseIndex;
 import ijaux.hypergeom.index.GridIndex;
 /*
  *  Basic service class of PixLib
- *  @ version 0.9.5
+ *  @ version 1.0
+ *  	different philosophy; mostly data types
+ *   0.9.5
  */
-public class PixLib 
-			 implements Constants {
+public class PixLib implements Constants {
 	
 	final static int defaultdimorder=_Z;//ZTC;
 	
 	public boolean debug=false;
+	
 	
 	/*
 	 *  Returns false if the PixLib version is less than the one specified. */

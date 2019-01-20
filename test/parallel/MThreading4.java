@@ -5,7 +5,6 @@ import ijaux.PixLib;
 import ijaux.Util;
 import ijaux.datatype.UnsupportedTypeException;
 import ijaux.hypergeom.PixelCube;
-import ijaux.hypergeom.Region;
 import ijaux.hypergeom.index.BaseIndex;
 import ijaux.parallel.ForkJoinJob;
 import ijaux.parallel.ForkJoinTask;

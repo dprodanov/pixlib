@@ -2,7 +2,7 @@ package ijaux;
 
 public interface Constants {
 	
-	String libVersion="0.9.5";
+	String libVersion="1.0";
 	/*
 	 * Iteration pattern constants 
 	 */

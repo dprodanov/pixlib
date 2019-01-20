@@ -50,9 +50,6 @@ implements HyperCube<int[],E>, Cloneable{
 			
 	}
 	
-	public Region<E> getRegion(int[] orig, int[]dims) {
-		return null;
-	}
 	
 	public PagedFileAccess<E> getAccess() {
 		return pa;

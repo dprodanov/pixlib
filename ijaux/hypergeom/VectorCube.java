@@ -8,7 +8,6 @@ import ijaux.*;
 import ijaux.datatype.Pair;
 import ijaux.datatype.UnsupportedTypeException;
 import ijaux.datatype.access.Access;
-import ijaux.datatype.oper.Op;
 import ijaux.hypergeom.index.BaseIndex;
 import ijaux.hypergeom.index.CenteredIndex;
 
@@ -318,6 +317,7 @@ public class VectorCube<E extends Number> extends PairCube<int[], E>{
 		
 	}
 
+	/*
 	public void invert() {			
 		try {
 			@SuppressWarnings("unchecked")
@@ -333,6 +333,9 @@ public class VectorCube<E extends Number> extends PairCube<int[], E>{
 		}
 		
 	}
+	*/
+	
+	
 	@Override
 	public Class<?> getType() {
 		return btype;
