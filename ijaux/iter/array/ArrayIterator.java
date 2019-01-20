@@ -3,12 +3,6 @@ package ijaux.iter.array;
 import ijaux.Util;
 import ijaux.datatype.UnsupportedTypeException;
 import ijaux.funct.*;
-import ijaux.funct.iter.ByteFunctIterator;
-import ijaux.funct.iter.DoubleFunctIterator;
-import ijaux.funct.iter.FloatFunctIterator;
-import ijaux.funct.iter.FunctionIterator;
-import ijaux.funct.iter.IntFunctIterator;
-import ijaux.funct.iter.ShortFunctIterator;
 import ijaux.iter.AbstractIterator;
 
 import java.lang.reflect.Array;
@@ -22,7 +16,7 @@ public abstract class ArrayIterator<N> extends AbstractIterator<N> implements Pr
  
 	protected int step=1;
 	
-	protected SimpleFunction<N> funct;
+	//protected SimpleFunction<N> funct;
 	
 	protected int mask=byteMask;
 	
@@ -38,6 +32,7 @@ public abstract class ArrayIterator<N> extends AbstractIterator<N> implements Pr
 		throw new UnsupportedTypeException("Not a primitive  or unsupported type");
 	}
 	
+	/*
 	@SuppressWarnings("unchecked")
 	public static <N> FunctionIterator<N>  functIterator(Object pixels, SimpleFunction<N> funct) throws UnsupportedTypeException {
 		Class<?> type=Util.getPrimitiveType(pixels.getClass());
@@ -66,6 +61,8 @@ public abstract class ArrayIterator<N> extends AbstractIterator<N> implements Pr
 		throw new UnsupportedTypeException("Not a primitive  or unsupported type");
 	}
 	
+	*/
+	/*
 	@SuppressWarnings("unchecked")
 	public static <N> FunctionIterator<N>  functIterator(ArrayIterator<N> iter, SimpleFunction<N> funct) 
 			 {
@@ -95,6 +92,7 @@ public abstract class ArrayIterator<N> extends AbstractIterator<N> implements Pr
 		
 		return null;
 	}
+	*/
 	
 	@Override
 	public void remove() { throw new UnsupportedOperationException(); }
@@ -203,6 +201,7 @@ public abstract class ArrayIterator<N> extends AbstractIterator<N> implements Pr
 			set(0);
 	}
 	
+	/*
 	public SimpleFunction<N> getFunct() {
 		return funct;
 	}
@@ -210,6 +209,7 @@ public abstract class ArrayIterator<N> extends AbstractIterator<N> implements Pr
 	public void setFunct(SimpleFunction<N> funct) {
 		this.funct = funct;
 	}
+	*/
 	
 	public void setMask(int m) {
 		mask=m;

@@ -12,9 +12,6 @@ import ijaux.datatype.Typing;
 import ijaux.datatype.UnsupportedTypeException;
 import ijaux.datatype.access.Access;
 import ijaux.datatype.access.BlockAccess;
-import ijaux.funct.SimpleFunction;
-import ijaux.funct.iter.FunctionIterator;
-import ijaux.funct.iter.RasterFunctIterator;
 import ijaux.hypergeom.index.BaseIndex;
 import ijaux.hypergeom.index.CenteredIndex;
 import ijaux.hypergeom.index.Indexing;
@@ -556,6 +553,7 @@ implements  HyperCube<int[],E>,Cloneable {
 		return (BlockAccess) iter; 	
 	}
 	
+	/*
 	public FunctionIterator<E> functIterator (SimpleFunction<E> funct) {
 		switch (iterPattern) {
 			case IP_SINGLE+IP_PRIM:
@@ -571,6 +569,7 @@ implements  HyperCube<int[],E>,Cloneable {
 			default: return new RasterFunctIterator<E>(pixels, funct);
 		}
 	}
+	*/
 	
 	public VectorCursor<E> getBlockIterator() {
 		return new VectorCursor<E>(access, pIndex);
