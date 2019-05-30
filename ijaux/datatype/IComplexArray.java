@@ -291,6 +291,11 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		data[index+1]=value.Im();
 	}
 
+	public void putD(int index, double real, double imag) {
+		data[index]=real;
+		data[index+1]=imag;
+	}
+	
 	@Override
 	public ComplexNumber element(Integer coords) {
 		return new ComplexNumber(data[coords], data[coords+1], false);

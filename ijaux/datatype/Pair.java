@@ -39,6 +39,16 @@ public class Pair<A, B> implements Serializable, Cloneable {
     	return new Pair<B,A>(second,first);
     }
     
+    // synonymous
+    public  Pair<B,A> transpose() {
+    	return new Pair<B,A>(second,first);
+    }
+    
+    public void set (A f, B s) {
+    	first=f;
+    	second=s;
+    }
+    
     @SuppressWarnings("unchecked")
 	public static <A,B> Pair<A,B>[] array (int n) {
         return new Pair[n];

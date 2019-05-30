@@ -14,8 +14,28 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 	private static final long serialVersionUID = -5513067895742945334L;
 	private boolean isPolar=false;
 	
+	/*
+	 *  specific numbers
+	 */
+	/**
+	* A ComplexNumber  "0 + 0 i".
+	*/
 	public static ComplexNumber zero() {
 		return new ComplexNumber(0,0,false);
+	}
+	
+	/**
+	* A ComplexNumber representing "NaN + NaN i".
+	*/
+	public static ComplexNumber NaN() {
+		return new ComplexNumber(Double.NaN, Double.NaN, false);
+	}
+
+	/**
+	* A ComplexNumber representing "+INF + INF i"
+	*/
+	public static final ComplexNumber INF() {
+		return new ComplexNumber(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, false);
 	}
 	
 	public ComplexNumber(double a, double b, boolean polar) {
@@ -84,21 +104,7 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 
 
 	 public String toString() {
-/*		    if (this.first == 0) {
-		      if (this.second == 0) {
-		        return "0";
-		      } else {
-		        return (this.second + "i");
-		      }
-		    } else {
-		      if (this.second == 0) {
-		        return String.valueOf(this.first);
-		      } else if (this.second < 0) {
-		        return(this.first + " " + this.second + "i");
-		      } else {
-		        return(this.first + " +" + this.second + "i");
-		      }
-		    }*/
+ 
 		 String astr="";
 			if (!isPolar) {
 				
@@ -148,6 +154,11 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 		//return  new ComplexNumber(-Re(), -Im(), false);
 	}
 
+	public void setD(double a, double b ) {
+		first=a;
+		second=b;
+	}
+	
 	@Override
 	public void scale(double scalar) {
 		first=scalar*Re(); 

@@ -3,12 +3,9 @@
  */
 package ijaux.hypergeom;
 
-import java.util.*;
 import java.lang.reflect.*;
 
 import ijaux.*;
-import ijaux.datatype.Pair;
-import ijaux.datatype.Typing;
 import ijaux.datatype.UnsupportedTypeException;
 import ijaux.datatype.access.Access;
 import ijaux.datatype.access.BlockAccess;

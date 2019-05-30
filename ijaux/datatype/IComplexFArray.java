@@ -291,6 +291,11 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		data[index]=value.Re();
 		data[index+1]=value.Im();
 	}
+	
+	public void putF(int index, float real, float imag) {
+		data[index]=real;
+		data[index+1]=imag;
+	}
 
 	@Override
 	public ComplexFNumber element(Integer coords) {

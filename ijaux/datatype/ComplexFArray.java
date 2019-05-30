@@ -299,7 +299,12 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	@Override
 	public void putE(int index, ComplexFNumber value) {
 		first[index]=value.Re();
-		second[index]=value.Im();
+		second[index+1]=value.Im();
+	}
+	
+	public void putF(int index, float real, float imag) {
+		first[index]=real;
+		second[index]=imag;
 	}
 
 	@Override

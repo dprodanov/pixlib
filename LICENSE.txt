@@ -1,4 +1,4 @@
-Copyright (C) 2010, Dimiter Prodanov
+Copyright (C) 2010 - 2019, Dimiter Prodanov
 Copyright (C) 2010, IMEC
 
 All rights reserved.

@@ -144,6 +144,11 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 		second=-second;
 		//return  new ComplexNumber(-Re(), -Im(), false);
 	}
+	
+	public void setF(float a, float b ) {
+		first=a;
+		second=b;
+	}
 
 	@Override
 	public void scale(double scalar) {
