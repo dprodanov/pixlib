@@ -1,4 +1,4 @@
-package ijaux.datatype.access;
+package ijaux.funct;
 
 import ijaux.funct.ElementFunction;
 import ijaux.funct.SimpleFunction;
