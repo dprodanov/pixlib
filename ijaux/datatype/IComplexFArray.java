@@ -342,6 +342,13 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		return astr;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public float[] getArray() {
+		return data;
+	}
 	
 
 }

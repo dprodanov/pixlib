@@ -191,6 +191,14 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 		return c==double.class;
 	}
 
+	
+	public static ComplexNumber i() {
+		return new ComplexNumber(0,1,false);
+	}
 
+	
+	public ComplexNumber one() {
+		return new ComplexNumber(1,0,false);
+	}
 
 }

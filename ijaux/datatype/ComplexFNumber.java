@@ -182,6 +182,13 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 		return c==double.class;
 	}
 
+	public static ComplexFNumber i() {
+		return new ComplexFNumber(0,1,false);
+	}
 
+	
+	public ComplexFNumber one() {
+		return new ComplexFNumber(1,0,false);
+	}
 
 }

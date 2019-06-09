@@ -341,6 +341,13 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		return astr;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public double[] getArray() {
+		return data;
+	}
 	
 
 }
