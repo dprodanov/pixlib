@@ -55,25 +55,56 @@ public class TestUtil {
 			Access<?> ay=Access.rawAccess(y, null);
 			int n=(int) ax.length();
 			final int n1=(int) ay.length();
-		if (n!=n1) 
-			throw new IllegalArgumentException();
-		double sum_x=0;
-		
-		for (int i=0; i<n; i++) {
-			final double xi=ax.elementDouble(i);
-			final double yi=ay.elementDouble(i);
-			sum_x+=(xi-yi)*(xi-yi);			 
-		}
-		
-		if (norm)
-			sum_x/=(double)n;
-  
-		return sum_x;	
+			if (n!=n1) 
+				throw new IllegalArgumentException();
+			double sum_x=0;
+			
+			for (int i=0; i<n; i++) {
+				final double xi=ax.elementDouble(i);
+				final double yi=ay.elementDouble(i);
+				sum_x+=(xi-yi)*(xi-yi);			 
+			}
+			
+			if (norm)
+				sum_x/=(double)n;
+	  
+			return sum_x;	
 		} catch (UnsupportedTypeException e) {
 			e.printStackTrace();
 		}
 		throw new IllegalArgumentException("not an array");		
 	}
+	
+
+	public static<A> double sqrtdiff(A x, A y, boolean norm) {
+		try {
+			Access<?> ax=Access.rawAccess(x, null);
+			Access<?> ay=Access.rawAccess(y, null);
+			int n=(int) ax.length();
+			final int n1=(int) ay.length();
+			if (n!=n1) 
+				throw new IllegalArgumentException();
+			double sum_x=0;
+			
+			for (int i=0; i<n; i++) {
+				final double xi=ax.elementDouble(i);
+				final double yi=ay.elementDouble(i);
+				sum_x+=(xi-yi)*(xi-yi);			 
+			}
+			sum_x=sqrt(sum_x);
+			
+			if (norm)
+				sum_x/=(double)n;
+	  
+			return sum_x;	
+		} catch (UnsupportedTypeException e) {
+			e.printStackTrace();
+		}
+		throw new IllegalArgumentException("not an array");		
+	}
+	
+	
+	
 	/*public static double corrcoef(float[] x, float[] y) {
 		int n=x.length;
 		final int n1=y.length;
