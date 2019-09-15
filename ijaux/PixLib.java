@@ -10,6 +10,7 @@ import ijaux.datatype.access.Access;
 import ijaux.hypergeom.PixelCube;
 import ijaux.hypergeom.index.BaseIndex;
 import ijaux.hypergeom.index.GridIndex;
+
 /*
  *  Basic service class of PixLib
  *  @ version 1.0
