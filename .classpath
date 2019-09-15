@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="ijaux/dsp/Conv.java|ijaux/dsp/DSP.java|ijaux/dsp/FFT.java|ijaux/dsp/|ijaux/hypergeom/dsp/|test/dsp/|ijaux/hypergeom/BCFactory.java|ijaux/funct/impl/|test/ArrayWrapperTest.java|test/ThresholdingTest.java|test/funct/" kind="src" path=""/>
+	<classpathentry excluding="ijaux/dsp/Conv.java|ijaux/dsp/DSP.java|ijaux/dsp/FFT.java|ijaux/dsp/|ijaux/hypergeom/dsp/|test/dsp/|ijaux/hypergeom/BCFactory.java|ijaux/funct/impl/|test/ArrayWrapperTest.java|test/ThresholdingTest.java|test/funct/|ijaux/hypergeom/ComplexCube.java|ijaux/hypergeom/ZonalProcessor.java" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ij"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jama"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/IJ"/>
 	<classpathentry kind="lib" path="C:/Applications/ImageJa/Jama-1.0.3.jar"/>
-	<classpathentry kind="lib" path="C:/Applications/ImageJ/plugins/dsplib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

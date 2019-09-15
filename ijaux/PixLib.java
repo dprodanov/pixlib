@@ -7,8 +7,6 @@ import ij.process.*;
 import ijaux.compat.ImagePlusCube;
 import ijaux.datatype.UnsupportedTypeException;
 import ijaux.datatype.access.Access;
-import ijaux.datatype.access.ComplexAccess;
-import ijaux.hypergeom.ComplexCube;
 import ijaux.hypergeom.PixelCube;
 import ijaux.hypergeom.index.BaseIndex;
 import ijaux.hypergeom.index.GridIndex;
@@ -284,7 +282,7 @@ public class PixLib implements Constants {
 	
 	/* (non-Javadoc)
 	 * @see ijaux.IJFactory#imageFrom(java.lang.String, ijaux.hypergeom.PixelCube)
-	 */
+	 *
 	public  CompositeImage imageFrom(String title, ComplexCube  cube, int mode, int xdir)   {
 		final int ndim=cube.getNDimensions();
 		if (ndim >2) 
@@ -310,12 +308,12 @@ public class PixLib implements Constants {
 		}
 		return null;
 	}
-
+ */
 	/**
 	 * @param cube
 	 * @param dims
 	 * @return
-	 */
+	 *
 	private ImageStack strack_reim2(ComplexCube cube, final int[] dims) {
 		PixelCube<Double,?> re=cube.RealCube();
 		PixelCube<Double,?> im=cube.ImCube();
@@ -332,12 +330,12 @@ public class PixLib implements Constants {
 		}
 		return is;
 	}
-
+ */
 	/**
 	 * @param cube
 	 * @param dims
 	 * @return
-	 */
+	 *
 	private ImageStack strack_abs2(ComplexCube cube, final int[] dims, int xdir) {
 		double[] pwr=cube.norm2();
 		double[] phase=cube.phase();
@@ -358,7 +356,7 @@ public class PixLib implements Constants {
 		return   is;
 	 
 	}
-
+ */
  
 	/* (non-Javadoc)
 	 * @see ijaux.IJFactory#imageFrom(java.lang.String, ijaux.hypergeom.PixelCube)
@@ -505,13 +503,13 @@ public class PixLib implements Constants {
 	}
 
 
-	int[] dorder={2,3,4}; // default dimension ordering
+	private int[] dorder={2,3,4}; // default dimension ordering
 	// 2 3 : z {t c}
 	// MRI t z; z t
 	// confocal c z
 	
 	
-	private void printdim(int [] dim) {
+	public static void printdim(int [] dim) {
 		System.out.print("[ ");
 		for (int d: dim) {
 			System.out.print(d+" ");
