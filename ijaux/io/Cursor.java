@@ -21,6 +21,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class Cursor {
 	
+	private CursorProduct cursorProduct = new CursorProduct();
+
 	protected int bytesPerPixel=1; // byte
 	
 	protected Class<?> returnType=byte.class;
@@ -112,106 +114,36 @@ public abstract class Cursor {
 	}
 	
 	public byte[] array (ByteBuffer buffer) {
-		return (byte[]) arrayObj (buffer);
+		return cursorProduct.array(buffer);
 	}
 	
 	public short[] array (ShortBuffer buffer) {
-		return (short[]) arrayObj (buffer);
+		return cursorProduct.array(buffer);
 	}
 	
 	public int[] array (IntBuffer buffer) {
-		return (int[]) arrayObj (buffer);
+		return cursorProduct.array(buffer);
 	}
 	
 	public long[] array (LongBuffer buffer) {
-		return (long[]) arrayObj (buffer);
+		return cursorProduct.array(buffer);
 	}
 	
 	public float[] array (FloatBuffer buffer) {
-		return (float[]) arrayObj (buffer);
+		return cursorProduct.array(buffer);
 	}
 	
 	public double[] array (DoubleBuffer buffer) {
-		return (double[]) arrayObj (buffer);
+		return cursorProduct.array(buffer);
 	}
 	
 	public char[] array (CharBuffer buffer) {
-		return (char[]) arrayObj (buffer);
+		return cursorProduct.array(buffer);
 	}
 	
 	Object arrayObj(Buffer buf) {
 		
-		if (buf instanceof ByteBuffer) {
-			if (buf.hasArray()) return buf.array();
-			else {
-				ByteBuffer bb= (ByteBuffer) buf;
-				byte[] ret=new byte [bb.limit()];
-				bb.get(ret);
-				return ret;
-			} 	
-		}// end if
-		
-		if (buf instanceof ShortBuffer) {
-			if (buf.hasArray()) return buf.array();
-			else {
-				ShortBuffer bb= (ShortBuffer) buf;
-				short[] ret=new short [bb.limit()];
-				bb.get(ret);
-				return ret;
-			} 	
-		}// end if
-		
-		if (buf instanceof IntBuffer) {
-			if (buf.hasArray()) return buf.array();
-			else {
-				IntBuffer bb= (IntBuffer) buf;
-				int[] ret=new int [bb.limit()];
-				bb.get(ret);
-				return ret;
-			} 	
-		}// end if
-		
-		
-		if (buf instanceof LongBuffer) {
-			if (buf.hasArray()) return buf.array();
-			else {
-				LongBuffer bb= (LongBuffer) buf;
-				long[] ret=new long [bb.limit()];
-				bb.get(ret);			
-				return ret;
-			} 	
-		}// end if
-		
-		if (buf instanceof FloatBuffer) {
-			if (buf.hasArray()) return buf.array();
-			else {
-				FloatBuffer bb= (FloatBuffer) buf;	
-				float[] ret=new float [bb.limit()];
-				bb.get(ret);		
-				return ret;
-			} 	
-		}// end if
-		
-		if (buf instanceof DoubleBuffer) {
-			if (buf.hasArray()) return buf.array();
-			else {
-				DoubleBuffer bb= (DoubleBuffer) buf;
-				double[] ret=new double [bb.limit()];
-				bb.get(ret);
-				return ret;
-			} 	
-		}// end if
-		
-		if (buf instanceof CharBuffer) {
-			if (buf.hasArray()) return buf.array();
-			else {
-				CharBuffer bb= (CharBuffer) buf;
-				char[] ret=new char [bb.limit()];
-				bb.get(ret);
-				return ret;
-			} 	
-		}// end if
-		return null;
+		return cursorProduct.arrayObj(buf);
 	}
 	/*
 	 * gives the file pointer in a single file

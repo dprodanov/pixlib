@@ -27,8 +27,6 @@
         <javaElement handleIdentifier="=Pixlib/&lt;ijaux.stats"/>
         <file path="/Pixlib/.project"/>
         <javaElement handleIdentifier="=Pixlib/&lt;ijaux.iter.dir"/>
-        <javaElement handleIdentifier="=Pixlib/&lt;test"/>
-        <javaElement handleIdentifier="=Pixlib/&lt;test.parallel"/>
         <javaElement handleIdentifier="=Pixlib/&lt;ijaux.iter"/>
         <file path="/Pixlib/.classpath"/>
         <javaElement handleIdentifier="=Pixlib/&lt;ijaux.datatype.access"/>
