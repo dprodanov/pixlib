@@ -441,10 +441,12 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	/**
 	 * 
 	 */
+	/*
 	@Override
 	public boolean eq(Class<?> c) {
 		return c==double.class;
 	}
+	*/
 	
 	/**
 	 * 

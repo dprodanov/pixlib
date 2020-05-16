@@ -451,11 +451,12 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	/**
 	 * 
 	 */
+	/*
 	@Override
 	public boolean eq(Class<?> c) {
 		return c==double.class;
 	}
-	
+	*/
 	/**
 	 * 
 	 */

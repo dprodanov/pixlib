@@ -221,13 +221,9 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 	 */
 	@Override
 	public Class<?> getType() {
-		return double.class;
+		return float.class;
 	}
 
-	@Override
-	public boolean eq(Class<?> c) {
-		return c==double.class;
-	}
 
 	/**
 	 * 
@@ -241,7 +237,7 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 	 * 
 	 * @return
 	 */
-	public ComplexFNumber one() {
+	public static ComplexFNumber one() {
 		return new ComplexFNumber(1,0,false);
 	}
 

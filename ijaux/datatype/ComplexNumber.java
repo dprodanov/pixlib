@@ -233,13 +233,7 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 		return double.class;
 	}
 
-	/**
-	 * 
-	 */
-	@Override
-	public boolean eq(Class<?> c) {
-		return c==double.class;
-	}
+ 
 
 	/**
 	 * 
@@ -253,7 +247,7 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 	 * 
 	 * @return
 	 */
-	public ComplexNumber one() {
+	public static ComplexNumber one() {
 		return new ComplexNumber(1,0,false);
 	}
 
