@@ -14,11 +14,21 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	private static final long serialVersionUID = -4789934942912445718L;
 	private int length=0;
  
+	/**
+	 * 
+	 * @param capacity
+	 * @return
+	 */
 	public static IComplexArray create(int capacity) {	 
 		double[]a=new double[2*capacity];	
 		return new IComplexArray(a);
 	}
 	
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 */
 	public IComplexArray(double[] a, double[] b) {	
 		if (a!=null && b!=null) {
 			length=2*a.length;
@@ -52,16 +62,18 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		} 
 	}
 	
-	/*
-	 *  
+	/**
+	 * 
+	 * @param a
 	 */
 	public IComplexArray(double[] a) {
 		length=a.length;
 		data=a;
 	}
 	
-	/*
-	 *  
+	/**
+	 * 
+	 * @param a
 	 */
 	public IComplexArray(float[] a) {
 		length=a.length;
@@ -70,6 +82,11 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 			data[i]= (double) a[i];
 	}
 	
+	/**
+	 * 
+	 * @param magnitude
+	 * @param angle
+	 */
 	public void polarForm(double[] magnitude, double[] angle) {
 		if (magnitude.length!=angle.length)
 			throw new IllegalArgumentException("array size mismatch");
@@ -82,16 +99,21 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	ComplexArray split() {
 		double[] re=Re();
 		double[] im=Im();		
 		return new ComplexArray(re, im, false);
 	}
 	
-/*	public static IComplexArray fromPolar(double[] magnitude, double[] angle) {
-		    return new IComplexArray (magnitude, angle, true);
-	}*/
 
+	/**
+	 * 
+	 * @return
+	 */
 	public double[] Re(){
 		double[] ret =new double[length/2];
 		for (int i=0; i<ret.length; i++)
@@ -99,6 +121,10 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		return ret;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public double[] Im(){
 		double[] ret =new double[length/2];
 		for (int i=0; i<ret.length; i++)
@@ -106,19 +132,36 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		return ret;
 	}
 	 
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public double Re(int i){
 		return data[i];
 	}
 	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public double Im(int i){
 		return data[i+1];
 	}
 	
+	/**
+	 * 
+	 */
 	public IComplexArray clone() {
 		double[] sfirst=data.clone();
 		return new IComplexArray(sfirst);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public IComplexArray conjugate() {
 		double[] xi=data.clone();			
 		for (int i=1; i<length; i+=2)
@@ -126,6 +169,9 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	    return new IComplexArray(xi);
 	}
 	
+	/**
+	 * 
+	 */
 	public void uconjugate() {			
 		for (int i=1; i<length; i+=2)
 			data[i]=-data[i];		
@@ -143,13 +189,20 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	    }
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public double[] mod() {
 	    double [] m=new double [length/2];
 		for (int i=0; i<length; i+=2)
 	        m[i>>1]=Math.sqrt(data[i]*data[i]+data[i+1]*data[i+1]);     
 	    return m;
 	}
-
+	
+	/**
+	 * 
+	 */
 	@Override
 	public double[] norm(){
 		return mod();
@@ -163,7 +216,11 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		//return Math.atan2(first[i],second[i]);
 		return Math.atan2(data[i+1],data[i]);
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public double[] arg() {
 		double [] ret=new double [length/2];
 		for (int i=0; i<length; i+=2) {
@@ -174,7 +231,9 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	}
 
 	
-
+	/**
+	 * 
+	 */
 	public IComplexArray invs() {
 		final double[] s=norm2();
 		double[] a=new double [length]; 
@@ -184,7 +243,8 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		return new IComplexArray(a);
 	}
 
-	/* RE : r[1]*r[2] - i[1]*i[2] 
+	/** 
+	 * RE : r[1]*r[2] - i[1]*i[2] 
 	 * IM : i[1]*r[2] + r[1]*i[2]
 	*/
 	@Override
@@ -200,7 +260,10 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	}
 
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public double[] norm2() {
 		double[] dnorm=new double[length/2];
 		for(int i=0; i<length; i++) {
@@ -209,10 +272,18 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		return dnorm;
 	}
 	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public double  norm2(int i) {
 		return data[i]*data[i]+data[i+1]*data[i+1];
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void add(IComplexArray a) {
 		if (validate(a)) {
@@ -222,23 +293,37 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		}
 	}
 
+	/**
+	 * 
+	 * @param a
+	 */
 	public void add(double a) {
 			for(int i=0; i<length; i++) {
 				data[i]+= a; 
 			}
 	}
 
+	/**
+	 * 
+	 */
 	public void inv() {
 		for(int i=0; i<length; i++) {
 			data[i]=-data[i];
 		}
 	}
 
+	/**
+	 * 
+	 * @param i
+	 */
 	public void inv(int i) {
 		  	data[i]=-data[i];
 			data[i+1]=-data[i+1];
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void scale(double scalar) {
 		for(int i=0; i<length; i++) {
@@ -246,8 +331,9 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		}
 	}
 
- 
-	
+	/**
+	 * 
+	 */
 	@Override
 	public void sub(IComplexArray a) {
 		if (validate(a)) {
@@ -258,7 +344,7 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 		}
 	}
 
-	/*
+	/**
 	 * 	s: (r[2]^2+i[2]^2)
 	 *  RE: (r[1]*r[2]+i[1]*i[2])/s
 	 *  IM: (i[1]*r[2]-r[1]*i[2])/s
@@ -275,62 +361,103 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 			}
 			}
 	}
-
+	
+	/**
+	 * 
+	 * @param a
+	 * @return
+	 */
 	public boolean validate(IComplexArray a) {
 		return length==a.length;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public ComplexNumber element(int index) {
 		return new ComplexNumber(data[index], data[index+1], false);
 	}
-
+	
+	/**
+	 * 
+	 */
 	@Override
 	public void putE(int index, ComplexNumber value) {
 		data[index]=value.Re();
 		data[index+1]=value.Im();
 	}
 
+	/**
+	 * 
+	 * @param index
+	 * @param real
+	 * @param imag
+	 */
 	public void putD(int index, double real, double imag) {
 		data[index]=real;
 		data[index+1]=imag;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public ComplexNumber element(Integer coords) {
 		return new ComplexNumber(data[coords], data[coords+1], false);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void putV(Integer coords, ComplexNumber value) {
 		putE(coords,value);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void put(Pair<Integer, ComplexNumber> pair) {
 		putE(pair.first, pair.second);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public int[] size() { 
 		return new int[]{length/2,2};
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public long length() { 
 		return length;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Class<?> getType() {
 		return double.class;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public boolean eq(Class<?> c) {
 		return c==double.class;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		String astr="[\n";
@@ -350,4 +477,4 @@ ElementAccess<Integer, ComplexNumber>, Typing {
 	}
 	
 
-}
+} //END

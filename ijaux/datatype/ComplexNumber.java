@@ -1,16 +1,16 @@
 package ijaux.datatype;
 
 
-
+/**
+ * 
+ * @author Dimiter Prodanov
+ *
+ */
 public class ComplexNumber extends Pair<Double,Double> 
 
 implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
  
  
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5513067895742945334L;
 	private boolean isPolar=false;
 	
@@ -38,6 +38,12 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 		return new ComplexNumber(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, false);
 	}
 	
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @param polar
+	 */
 	public ComplexNumber(double a, double b, boolean polar) {
 		super(a,b);
 		if (polar){
@@ -46,6 +52,11 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 		isPolar=polar;
 	}
 	
+	/**
+	 * 
+	 * @param magnitude
+	 * @param angle
+	 */
 	public void polarForm(double magnitude, double angle) {
 		   
 	      first=(magnitude * Math.cos(angle));
@@ -54,6 +65,12 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 
 	}
 	
+	/**
+	 * 
+	 * @param magnitude
+	 * @param angle
+	 * @return
+	 */
 	public static ComplexNumber fromPolar(double magnitude, double angle) {
 		    double first=(magnitude * Math.cos(angle));
 		    double second=(magnitude * Math.sin(angle));
@@ -61,21 +78,29 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public double Re(){
 		return first;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public double Im(){
 		return second;
 	}
 	 
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ComplexNumber conjugate() {
 	    return new ComplexNumber(first, second * (-1), false);
 	  }
-
-	
- 
 
 
 	 /**
@@ -102,31 +127,32 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 	}
 
 
-
+	/**
+	 * 
+	 */
 	 public String toString() {
  
 		 String astr="";
-			if (!isPolar) {
-				
+			if (!isPolar) {		
 					astr+=" ("+first+" "+ second+"j)";
-			
-
 			} else {
-				
 					astr+=" (r="+first+" fi="+ second+")";
-			
 			}
 			 astr+="";
 			 return astr;
 	 }
-
+	 
+	 /**
+	  * 
+	  */
 	public ComplexNumber invs() {
 		double s=mod();
 		s*=s;
 		return new ComplexNumber(Re()/s, -Im()/s, false);
 	}
 
-	/* RE : r[1]*r[2] - i[1]*i[2] 
+	/** 
+	 * RE : r[1]*r[2] - i[1]*i[2] 
 	 * IM : i[1]*r[2] + r[1]*i[2]
 	*/
 	@Override
@@ -136,12 +162,17 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 		first=tmpr;
 	} 
 	
-
+	/**
+	 * 
+	 */
 	@Override
 	public ComplexNumber norm() {
 		return new ComplexNumber(mod()*mod(), 0, false); 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void add(ComplexNumber a) {
 		first+= a.Re(); 
@@ -151,26 +182,39 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 	public void inv() {
 		first=-first;
 		second=-second;
-		//return  new ComplexNumber(-Re(), -Im(), false);
 	}
 
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 */
 	public void setD(double a, double b ) {
 		first=a;
 		second=b;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void scale(double scalar) {
 		first=scalar*Re(); 
 		second=scalar*Im();
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void sub(ComplexNumber a) {
 		first-=a.Re();
 		second-=a.Im(); 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void div(ComplexNumber a) {
 		// twiddle
@@ -181,24 +225,36 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 		first=tmpr;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Class<?> getType() {
 		return double.class;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public boolean eq(Class<?> c) {
 		return c==double.class;
 	}
 
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public static ComplexNumber i() {
 		return new ComplexNumber(0,1,false);
 	}
 
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ComplexNumber one() {
 		return new ComplexNumber(1,0,false);
 	}
 
-}
+} //END

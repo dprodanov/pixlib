@@ -14,10 +14,20 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 	private static final long serialVersionUID = -5513067895742945334L;
 	private boolean isPolar=false;
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public static ComplexFNumber zero() {
 		return new ComplexFNumber(0,0,false);
 	}
 	
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @param polar
+	 */
 	public ComplexFNumber(float a, float b, boolean polar) {
 		super(a,b);
 		if (polar){
@@ -26,6 +36,11 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 		isPolar=polar;
 	}
 	
+	/**
+	 * 
+	 * @param magnitude
+	 * @param angle
+	 */
 	public void polarForm(double magnitude, double angle) { 
 	      first=(float) (magnitude * Math.cos(angle));
 	      second=(float) (magnitude * Math.sin(angle));
@@ -33,6 +48,12 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 
 	}
 	
+	/**
+	 * 
+	 * @param magnitude
+	 * @param angle
+	 * @return
+	 */
 	public static ComplexFNumber fromPolar(double magnitude, double angle) {
 		    float first=(float) (magnitude * Math.cos(angle));
 		    float second=(float) (magnitude * Math.sin(angle));
@@ -40,21 +61,30 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public float Re(){
 		return first;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public float Im(){
 		return second;
 	}
 	 
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ComplexFNumber conjugate() {
 	    return new ComplexFNumber(first, second * (-1), false);
 	  }
 
-	
- 
 
 
 	 /**
@@ -81,23 +111,10 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 	}
 
 
-
+	/**
+	 * 
+	 */
 	 public String toString() {
-/*		    if (this.first == 0) {
-		      if (this.second == 0) {
-		        return "0";
-		      } else {
-		        return (this.second + "i");
-		      }
-		    } else {
-		      if (this.second == 0) {
-		        return String.valueOf(this.first);
-		      } else if (this.second < 0) {
-		        return(this.first + " " + this.second + "i");
-		      } else {
-		        return(this.first + " +" + this.second + "i");
-		      }
-		    }*/
 		 String astr="";
 			if (!isPolar) {
 				
@@ -113,12 +130,16 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 			 return astr;
 	 }
 
+	/**
+	 * 
+	 */
 	public ComplexFNumber invs() {
 		final double s=mod()*mod();
 		return new ComplexFNumber((float)(Re()/s), (float)(-Im()/s), false);
 	}
 
-	/* RE : r[1]*r[2] - i[1]*i[2] 
+	/** 
+	 * RE : r[1]*r[2] - i[1]*i[2] 
 	 * IM : i[1]*r[2] + r[1]*i[2]
 	*/
 	@Override
@@ -128,40 +149,63 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 		first=(float) tmpr;
 	}
  
+	/**
+	 * 
+	 */
 	@Override
 	public ComplexFNumber norm() {
 		return new ComplexFNumber((float) (mod()*mod()), 0, false); 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void add(ComplexFNumber a) {
 		first+= a.Re(); 
 		second+=a.Im(); 
 	}
 
+	/**
+	 * 
+	 */
 	public void inv() {
 		first=-first;
 		second=-second;
 		//return  new ComplexNumber(-Re(), -Im(), false);
 	}
 	
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 */
 	public void setF(float a, float b ) {
 		first=a;
 		second=b;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void scale(double scalar) {
 		first=(float) (scalar*Re()); 
 		second=(float) (scalar*Im());
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void sub(ComplexFNumber a) {
 		first-=a.Re();
 		second-=a.Im(); 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void div(ComplexFNumber a) {
 		// twiddle
@@ -172,6 +216,9 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 		first=(float) tmpr;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Class<?> getType() {
 		return double.class;
@@ -182,13 +229,20 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 		return c==double.class;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static ComplexFNumber i() {
 		return new ComplexFNumber(0,1,false);
 	}
 
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ComplexFNumber one() {
 		return new ComplexFNumber(1,0,false);
 	}
 
-}
+} //END

@@ -5,13 +5,34 @@ package ijaux.datatype;
  */
 public interface Separable<VectorType> {
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getNKernels();
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public VectorType[] getKernelArrays();
 	
+	/**
+	 * 
+	 */
 	public void split();
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public VectorType join();
 	
-	public boolean isSeparable();
+	/**
+	 * 
+	 * @return
+	 */
+	public default boolean isSeparable() {
+		return true;
+	}
 }

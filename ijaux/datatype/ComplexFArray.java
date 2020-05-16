@@ -20,12 +20,23 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	private static final long serialVersionUID = -5513067895742945334L;
 	private boolean isPolar=false;
 
+	/**
+	 * 
+	 * @param capacity
+	 * @return
+	 */
 	public static ComplexFArray create(int capacity) {	 
 		float[]a=new float[capacity];
 		float[]b=new float[capacity];
 		return new ComplexFArray(a,b, false);
 	}
 	
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @param polar
+	 */
 	public ComplexFArray(float[] a, float[] b, boolean polar) {
 		super(a,b);
 		isPolar=polar;
@@ -43,8 +54,9 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		}
 	}
 	
-	/*
-	 *  only real valued 
+	/**
+	 * only real valued input
+	 * @param a
 	 */
 	public ComplexFArray(float[] a) {
 		super(a,null);
@@ -53,10 +65,19 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		length=a.length;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public IComplexFArray join() {
 		return new IComplexFArray (first, second);
 	}
 	
+	/**
+	 * 
+	 * @param magnitude
+	 * @param angle
+	 */
 	public void polarForm(float[] magnitude, float[] angle) {
 		if (magnitude.length!=angle.length)
 			throw new IllegalArgumentException("array size mismatch");
@@ -70,32 +91,63 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 
 	}
 	
+	/**
+	 * 
+	 * @param magnitude
+	 * @param angle
+	 * @return
+	 */
 	public static ComplexFArray fromPolar(float[] magnitude, float[] angle) {
 		    return new ComplexFArray (magnitude, angle, true);
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public float[] Re(){
 		return first;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public float[] Im(){
 		return second;
 	}
-	 
+	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public float Re(int i){
 		return first[i];
 	}
 	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public float Im(int i){
 		return second[i];
 	}
 	
+	/**
+	 * 
+	 */
 	public ComplexFArray clone() {
 		float[] sfirst=first.clone();
 		float[] ssecond=second.clone();
 		return new ComplexFArray(sfirst, ssecond, false);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public ComplexFArray conjugate() {
 		//double[] sfirst=new double[first.length];
 		float[] sfirst=first.clone();
@@ -109,9 +161,9 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	    return new ComplexFArray(sfirst, ssecond, false);
 	  }
 	 /**
-    Modulus of this Complex number
-    (the distance from the origin in polar coordinates).
-    @return |z| where z is this Complex number.
+    * Modulus of this Complex number
+    * (the distance from the origin in polar coordinates).
+    * @return |z| where z is this Complex number.
 	*/
 	public double mod(int i) {
 	    if (first[i]!=0 || second[i]!=0) {
@@ -121,6 +173,10 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	    }
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public double[] mod() {
 	    double [] m=new double [first.length];
 		for (int i=0; i<first.length; i++)
@@ -139,6 +195,10 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		return Math.atan2(second[i],first[i]);
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public double[] arg() {
 		double [] ret=new double [first.length];
 		for (int i=0; i<first.length; i++) {
@@ -149,26 +209,6 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	}
 
 	
-	/*
-
-	 public String toString() {
-		    if (this.first == 0) {
-		      if (this.second == 0) {
-		        return "0";
-		      } else {
-		        return (this.second + "i");
-		      }
-		    } else {
-		      if (this.second == 0) {
-		        return String.valueOf(this.first);
-		      } else if (this.second < 0) {
-		        return(this.first + " " + this.second + "i");
-		      } else {
-		        return(this.first + " +" + this.second + "i");
-		      }
-		    }
-		  }
-*/
 	public ComplexFArray invs() {
 		final float[] s=norm2();
 		float[] a=new float [first.length]; 
@@ -180,11 +220,11 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		return new ComplexFArray(a, b, false);
 	}
 
-	/* RE : r[1]*r[2] - i[1]*i[2] 
+	/**
+	 * RE : r[1]*r[2] - i[1]*i[2] 
 	 * IM : i[1]*r[2] + r[1]*i[2]
 	*/
 	@Override
- 
 	public void mult(ComplexFArray b) {
   		if (validate(b)) {
 			double tmpr, tmpi;
@@ -198,12 +238,19 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public ComplexFArray norm() { 
 		float[] z=new float[length];
 		return new ComplexFArray(norm2(), z, false); 
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public float[] norm2() {
 		float[] dnorm=new float[first.length];
 		for(int i=0; i<first.length; i++) {
@@ -212,10 +259,18 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		return dnorm;
 	}
 	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public double  norm2(int i) {
 		return first[i]*first[i]+second[i]*second[i];
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void add(ComplexFArray a) {
 		if (validate(a)) {
@@ -226,12 +281,19 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		}
 	}
 
+	/**
+	 * 
+	 * @param a
+	 */
 	public void add(double a) {
 			for(int i=0; i<first.length; i++) {
 				first[i]+= a; 
 			}
 	}
 
+	/**
+	 * 
+	 */
 	public void inv() {
 		for(int i=0; i<first.length; i++) {
 			first[i]=-first[i];
@@ -239,11 +301,18 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		}
 	}
 
+	/**
+	 * 
+	 * @param i
+	 */
 	public void inv(int i) {
 		  	first[i]=-first[i];
 			second[i]=-second[i];
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void scale(double scalar) {
 		for(int i=0; i<first.length; i++) {
@@ -252,6 +321,9 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void scale() {
 		final double scalar=1/(double)first.length;
 		for(int i=0; i<first.length; i++) {
@@ -259,6 +331,10 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 			second[i]*=scalar;
 		}
 	}
+	
+	/**
+	 * 
+	 */
 	@Override
 	public void sub(ComplexFArray a) {
 		if (validate(a)) {
@@ -269,7 +345,7 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		}
 	}
 
-	/*
+	/**
 	 * 	s: (r[2]^2+i[2]^2)
 	 *  RE: (r[1]*r[2]+i[1]*i[2])/s
 	 *  IM: (i[1]*r[2]-r[1]*i[2])/s
@@ -287,61 +363,102 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 			}
 	}
 
+	/**
+	 * 
+	 * @param a
+	 * @return
+	 */
 	public boolean validate(ComplexFArray a) {
 		return first.length==a.first.length && second.length==a.second.length;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public ComplexFNumber element(int index) {
 		return new ComplexFNumber(first[index], second[index], false);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void putE(int index, ComplexFNumber value) {
 		first[index]=value.Re();
 		second[index+1]=value.Im();
 	}
 	
+	/**
+	 * 
+	 * @param index
+	 * @param real
+	 * @param imag
+	 */
 	public void putF(int index, float real, float imag) {
 		first[index]=real;
 		second[index]=imag;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public ComplexFNumber element(Integer coords) {
 		return new ComplexFNumber(first[coords], second[coords], false);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void putV(Integer coords, ComplexFNumber value) {
 		putE(coords,value);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void put(Pair<Integer, ComplexFNumber> pair) {
 		putE(pair.first, pair.second);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public int[] size() { 
 		return new int[]{length,0};
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public long length() { 
 		return length;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Class<?> getType() {
 		return double.class;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public boolean eq(Class<?> c) {
 		return c==double.class;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		String astr="[ ";
@@ -359,4 +476,4 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		 return astr;
 	}
  
-}
+} //END

@@ -1,9 +1,11 @@
-package ijaux.datatype;
+package ijaux.hypergeom;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import ijaux.datatype.Pair;
 
 public class LevelSet<N extends Number> extends Pair<N,ArrayList<Integer>>
 implements Iterable<Integer> {

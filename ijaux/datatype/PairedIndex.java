@@ -3,6 +3,12 @@ package ijaux.datatype;
 import ijaux.datatype.*;
 import ijaux.hypergeom.index.Indexing;
 
+/**
+ * 
+ * @author Dimiter Prodanov
+ *
+ * @param <VectorType>
+ */
 public class PairedIndex<VectorType> extends
 		Pair<Indexing< VectorType>, Indexing<VectorType>>{
 
@@ -11,11 +17,20 @@ public class PairedIndex<VectorType> extends
 	 */
 	private static final long serialVersionUID = -324154412760621743L;
 
+	/**
+	 * 
+	 * @param first
+	 * @param second
+	 */
 	public PairedIndex(Indexing<VectorType> first, Indexing<VectorType> second) {
 		super(first, second);
-		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * 
+	 * @param mode
+	 * @return
+	 */
 	public boolean isValid(int mode) {
 		switch (mode) {
 			case 0: return first.isValid(); // 

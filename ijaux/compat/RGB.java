@@ -1,9 +1,11 @@
-package ijaux.datatype;
+package ijaux.compat;
 
 
 import java.awt.Color;
 import java.io.*;
 import java.lang.*;
+
+import ijaux.datatype.LinearSpaceReflexive;
  
 public class RGB extends Number 
 implements Serializable, Cloneable, LinearSpaceReflexive<RGB, RGB> {

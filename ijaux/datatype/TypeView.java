@@ -3,6 +3,11 @@ package ijaux.datatype;
 import ijaux.Constants;
 import ijaux.datatype.access.Access;
 
+/**
+ * 
+ * @author Dimiter Prodanov
+ *
+ */
 public class TypeView implements Constants {
 	int mask=byteMask;
 

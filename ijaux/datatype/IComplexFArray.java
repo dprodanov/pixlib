@@ -14,11 +14,21 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	private static final long serialVersionUID = -4789934942912445718L;
 	private int length=0;
  
+	/**
+	 * 
+	 * @param capacity
+	 * @return
+	 */
 	public static IComplexFArray create(int capacity) {	 
 		double[]a=new double[2*capacity];	
 		return new IComplexFArray(a);
 	}
 	
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 */
 	public IComplexFArray(float[] a, float[] b) {	
 		if (a!=null && b!=null) {
 			length=2*a.length;
@@ -52,16 +62,18 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		} 
 	}
 	
-	/*
-	 *  
+	/**
+	 * 
+	 * @param a
 	 */
 	public IComplexFArray(float[] a) {
 		length=a.length;
 		data=a;
 	}
 	
-	/*
-	 *  
+	/**
+	 * 
+	 * @param a
 	 */
 	public IComplexFArray(double[] a) {
 		length=a.length;
@@ -70,6 +82,11 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 			data[i]=  (float) a[i];
 	}
 	
+	/**
+	 * 
+	 * @param magnitude
+	 * @param angle
+	 */
 	public void polarForm(double[] magnitude, double[] angle) {
 		if (magnitude.length!=angle.length)
 			throw new IllegalArgumentException("array size mismatch");
@@ -82,16 +99,20 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	ComplexFArray split() {
 		float[] re=Re();
 		float[] im=Im();		
 		return new ComplexFArray(re, im, false);
 	}
 	
-/*	public static IComplexArray fromPolar(double[] magnitude, double[] angle) {
-		    return new IComplexArray (magnitude, angle, true);
-	}*/
-
+	/**
+	 * 
+	 * @return
+	 */
 	public float[] Re(){
 		float[] ret =new float[length/2];
 		for (int i=0; i<ret.length; i++)
@@ -99,6 +120,10 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		return ret;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public float[] Im(){
 		float[] ret =new float[length/2];
 		for (int i=0; i<ret.length; i++)
@@ -106,19 +131,36 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		return ret;
 	}
 	 
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public float Re(int i){
 		return data[i];
 	}
 	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public float Im(int i){
 		return data[i+1];
 	}
 	
+	/**
+	 * 
+	 */
 	public IComplexFArray clone() {
 		float[] sfirst=data.clone();
 		return new IComplexFArray(sfirst);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public IComplexFArray conjugate() {
 		float[] xi=data.clone();			
 		for (int i=1; i<length; i+=2)
@@ -126,10 +168,14 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	    return new IComplexFArray(xi);
 	}
 	
+	/**
+	 * 
+	 */
 	public void uconjugate() {			
 		for (int i=1; i<length; i+=2)
 			data[i]=-data[i];		
 	}
+	
 	 /**
     Modulus of this Complex number
     (the distance from the origin in polar coordinates).
@@ -143,6 +189,10 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	    }
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public float[] mod() {
 	    float [] m=new float [length/2];
 		for (int i=0; i<length; i+=2)
@@ -150,10 +200,14 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	    return m;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public float[] norm(){
 		return mod();
 	}
+	
 	/**
 	    Argument of this Complex number 
 	    (the angle in radians with the x-axis in polar coordinates).
@@ -164,6 +218,10 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		return Math.atan2(data[i+1],data[i]);
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public double[] arg() {
 		double [] ret=new double [length/2];
 		for (int i=0; i<length; i+=2) {
@@ -173,8 +231,9 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		return ret;
 	}
 
-	
-
+	/**
+	 * 
+	 */
 	public IComplexFArray invs() {
 		final double[] s=norm2();
 		double[] a=new double [length]; 
@@ -184,7 +243,8 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		return new IComplexFArray(a);
 	}
 
-	/* RE : r[1]*r[2] - i[1]*i[2] 
+	/**
+	 * RE : r[1]*r[2] - i[1]*i[2] 
 	 * IM : i[1]*r[2] + r[1]*i[2]
 	*/
 	@Override
@@ -201,7 +261,10 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		}
 	}
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public double[] norm2() {
 		double[] dnorm=new double[length/2];
 		for(int i=0; i<length; i++) {
@@ -210,10 +273,18 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		return dnorm;
 	}
 	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public float  norm2(int i) {
 		return data[i]*data[i]+data[i+1]*data[i+1];
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void add(IComplexFArray a) {
 		if (validate(a)) {
@@ -223,23 +294,37 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		}
 	}
 
+	/**
+	 * 
+	 * @param a
+	 */
 	public void add(double a) {
 			for(int i=0; i<length; i++) {
 				data[i]+= a; 
 			}
 	}
 
+	/**
+	 * 
+	 */
 	public void inv() {
 		for(int i=0; i<length; i++) {
 			data[i]=-data[i];
 		}
 	}
 
+	/**
+	 * 
+	 * @param i
+	 */
 	public void inv(int i) {
 		  	data[i]=-data[i];
 			data[i+1]=-data[i+1];
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void scale(double scalar) {
 		for(int i=0; i<length; i++) {
@@ -248,7 +333,9 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	}
 
  
-	
+	/**
+	 * 
+	 */
 	@Override
 	public void sub(IComplexFArray a) {
 		if (validate(a)) {
@@ -259,7 +346,7 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 		}
 	}
 
-	/*
+	/**
 	 * 	s: (r[2]^2+i[2]^2)
 	 *  RE: (r[1]*r[2]+i[1]*i[2])/s
 	 *  IM: (i[1]*r[2]-r[1]*i[2])/s
@@ -277,61 +364,102 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 			}
 	}
 
+	/**
+	 * 
+	 * @param a
+	 * @return
+	 */
 	public boolean validate(IComplexFArray a) {
 		return length==a.length;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public ComplexFNumber element(int index) {
 		return new ComplexFNumber(data[index], data[index+1], false);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void putE(int index, ComplexFNumber value) {
 		data[index]=value.Re();
 		data[index+1]=value.Im();
 	}
 	
+	/**
+	 * 
+	 * @param index
+	 * @param real
+	 * @param imag
+	 */
 	public void putF(int index, float real, float imag) {
 		data[index]=real;
 		data[index+1]=imag;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public ComplexFNumber element(Integer coords) {
 		return new ComplexFNumber(data[coords], data[coords+1], false);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void putV(Integer coords, ComplexFNumber value) {
 		putE(coords,value);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void put(Pair<Integer, ComplexFNumber> pair) {
 		putE(pair.first, pair.second);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public int[] size() { 
 		return new int[]{length/2,2};
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public long length() { 
 		return length;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Class<?> getType() {
 		return double.class;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public boolean eq(Class<?> c) {
 		return c==double.class;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		String astr="[\n";
@@ -349,6 +477,5 @@ ElementAccess<Integer, ComplexFNumber>, Typing {
 	public float[] getArray() {
 		return data;
 	}
-	
 
-}
+} //

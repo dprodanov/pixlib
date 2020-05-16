@@ -1,7 +1,6 @@
 package ijaux.hypergeom;
 
 import ijaux.Util;
-import ijaux.datatype.LevelSet;
 import ijaux.datatype.access.Access;
 import ijaux.hypergeom.index.BaseIndex;
 import ijaux.hypergeom.index.CenteredIndex;

@@ -1,15 +1,25 @@
 package ijaux.datatype;
 
-/*
+
+/**
  * type checking and conservation - should be implemented by all major classes
+ * @author Dimiter Prodanov
+ *
  */
 public interface Typing {
 
-	/*
-	 *  returns the underlying primitive data type of the object
+
+	/**
+	 * returns the underlying primitive data type of the object
+	 * @return
 	 */
-	 Class<?> getType();
+	Class<?> getType();
 	
-	boolean eq(Class<?> c);
+	/**
+	 * 
+	 * @param c
+	 * @return
+	 */
+	default boolean  eq(Class<?> c) { return getType()==c; }
 	
 }

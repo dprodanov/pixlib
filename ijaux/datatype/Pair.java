@@ -17,6 +17,11 @@ public class Pair<A, B> implements Serializable, Cloneable {
  	public A first;
     public B second;
 
+    /**
+     * 
+     * @param first
+     * @param second
+     */
     public Pair(A first, B second) {
         this.first = first;
         this.second = second;
@@ -26,29 +31,57 @@ public class Pair<A, B> implements Serializable, Cloneable {
         return new Pair<A,B>(first,second);
     }
     
+    /**
+     * 
+     * @param p
+     * @return
+     */
     @SuppressWarnings("unchecked")
 	public static <A,B> Pair<A,B> of (Pair<?,?> p) {
         return new Pair<A,B>((A)p.first,(B)p.second);
     }
     
+    /**
+     * 
+     * @param pair
+     * @return
+     */
     public static <B,A> Pair<B,A> swap (Pair<A,B> pair) {
     	return new Pair<B,A>(pair.second,pair.first);
     }
     
+    /**
+     * 
+     * @return
+     */
     public  Pair<B,A> swap() {
     	return new Pair<B,A>(second,first);
     }
     
     // synonymous
+    /**
+     * 
+     * @return
+     */
     public  Pair<B,A> transpose() {
     	return new Pair<B,A>(second,first);
     }
     
+    /**
+     * 
+     * @param f
+     * @param s
+     */
     public void set (A f, B s) {
     	first=f;
     	second=s;
     }
     
+    /**
+     * 
+     * @param n
+     * @return
+     */
     @SuppressWarnings("unchecked")
 	public static <A,B> Pair<A,B>[] array (int n) {
         return new Pair[n];
@@ -62,8 +95,9 @@ public class Pair<A, B> implements Serializable, Cloneable {
         return (hashFirst + hashSecond) * hashSecond + hashFirst;
     }
 
-
-
+    /**
+     * 
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -84,7 +118,9 @@ public class Pair<A, B> implements Serializable, Cloneable {
         return true;
     }
 
-
+    /**
+     * 
+     */
     @Override
     public String toString(){ 
            return "<" + first + " : " + second + ">"; 
@@ -92,5 +128,5 @@ public class Pair<A, B> implements Serializable, Cloneable {
     
    
 
-}
+} //END
 

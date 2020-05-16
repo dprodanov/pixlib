@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import ijaux.compat.RGB;
 import ijaux.datatype.Pair;
-import ijaux.datatype.RGB;
 import ijaux.datatype.UnsupportedTypeException;
 
 //TODO implementation
