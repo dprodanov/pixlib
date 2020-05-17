@@ -16,7 +16,6 @@ public abstract class AbstractIterator<T> implements IndexedIterator<T>,  Typing
 	public Class<?> getPrimitiveType() {return Util.getTypeMapping(returnType); }
 	
 	
-	//public Class<?> getReturnType() { return returnType; }
 	/*
 	 * Methods from Typing
 	 */
@@ -26,7 +25,7 @@ public abstract class AbstractIterator<T> implements IndexedIterator<T>,  Typing
 	 */
 	public Class<?> getType() { return returnType; }
 
-	public boolean eq(Class<?> c) { return (c==returnType); }
+	//public boolean eq(Class<?> c) { return (c==returnType); }
 	
 	
 	
@@ -39,22 +38,27 @@ public abstract class AbstractIterator<T> implements IndexedIterator<T>,  Typing
 	@Override
 	public abstract T next();  
 	
+	/**
+	 * 
+	 */
 	public abstract boolean hasNext(); 
 	
 	/*
 	 * IndexedIterator methods
 	 */
+	
 	/*
 	 * (non-Javadoc)
 	 * @see ijaux.iter.IndexedIterator#index()
 	 */
-
 	public int index() { return i; }
- /*
+ 
+	/*
   * (non-Javadoc)
   * @see ijaux.iter.IndexedIterator#set(int)
   */
 	public void set(int i) { this.i=i;	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see ijaux.iter.IndexedIterator#inc()
@@ -67,15 +71,31 @@ public abstract class AbstractIterator<T> implements IndexedIterator<T>,  Typing
 	public void dec() { i--; }
 	
 	
-	
+	/**
+	 * 
+	 * @param value
+	 */
 	public abstract void put(T value);
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int length() {
 		return size;
 	}
 	
+	/**
+	 * 
+	 */
 	public void reset() { i=0; }
 	
+	/**
+	 * 
+	 * @param n
+	 * @param x
+	 * @return
+	 */
 	public int[] perm(int n, int x) {
 		int[] ret=new int[n];		
 		ret[0]=x;
