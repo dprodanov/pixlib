@@ -6,11 +6,9 @@ import ijaux.datatype.access.ElementAccess;
 /*
  * based on the Pair class
  */
-public class ComplexArray 
-extends Pair<double[],double[]> 
+public class ComplexArray extends Pair<double[],double[]> 
 
-implements ProductSpaceReflexive<ComplexArray,ComplexArray>, 
-ElementAccess<Integer, ComplexNumber>, Typing {
+implements ProductSpaceReflexive<ComplexArray,ComplexArray>, ElementAccess<Integer, ComplexNumber>, Typing {
  
  
 	private int length=0;
