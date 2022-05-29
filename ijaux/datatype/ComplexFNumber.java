@@ -154,7 +154,19 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 	 */
 	@Override
 	public ComplexFNumber norm() {
-		return new ComplexFNumber((float) (mod()*mod()), 0, false); 
+		final double d=mod();
+		return new ComplexFNumber((float) (d*d), 0, false); 
+	}
+	
+	/**
+	 * %i*%e^a*sin(b)+%e^a*cos(b)
+	 * @return
+	 */
+	public ComplexFNumber exp() {
+		 double ee=Math.exp(first);
+		 double re=Math.cos(second);
+		 double im=Math.sin(second);
+		 return new ComplexFNumber((float) (ee*re), (float) (ee*im), false);
 	}
 
 	/**
@@ -172,7 +184,6 @@ implements ProductSpaceReflexive<ComplexFNumber,ComplexFNumber>, Typing {
 	public void inv() {
 		first=-first;
 		second=-second;
-		//return  new ComplexNumber(-Re(), -Im(), false);
 	}
 	
 	/**

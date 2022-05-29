@@ -122,14 +122,11 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 	    @return arg(z) where z is this Complex number.
 	 */
 	public double arg() {
-		//return Math.atan2(first,second);
 		return Math.atan2(second,first);
 	}
 
 
-	/**
-	 * 
-	 */
+	 @Override
 	 public String toString() {
  
 		 String astr="";
@@ -163,15 +160,16 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 	} 
 	
 	/**
-	 * 
+	 * the output is complex
 	 */
 	@Override
 	public ComplexNumber norm() {
-		return new ComplexNumber(mod()*mod(), 0, false); 
+		final double d=mod();
+		return new ComplexNumber(d*d, 0, false); 
 	}
 
 	/**
-	 * 
+	 * adds a complex number
 	 */
 	@Override
 	public void add(ComplexNumber a) {
@@ -179,9 +177,23 @@ implements ProductSpaceReflexive<ComplexNumber,ComplexNumber>, Typing {
 		second+=a.Im(); 
 	}
 
+	/**
+	 * inversion about the origin
+	 */
 	public void inv() {
 		first=-first;
 		second=-second;
+	}
+	
+	/**
+	 * %i*%e^a*sin(b)+%e^a*cos(b)
+	 * @return
+	 */
+	public ComplexNumber exp() {
+		 double ee=Math.exp(first);
+		 double re=Math.cos(second);
+		 double im=Math.sin(second);
+		 return new ComplexNumber(ee*re, ee*im, false);
 	}
 
 	/**
